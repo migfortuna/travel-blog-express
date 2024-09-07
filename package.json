@@ -8,5 +8,8 @@
   },
   "author": "Miguel Fortuna",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
