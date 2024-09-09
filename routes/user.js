@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { findUser, getUser, getBlogsByUser } from "../handlers/user.js";
+import { findUser } from "../middleware.js";
+import { getUser, getBlogsByUser } from "../handlers/user.js";
 
 const router = Router();
 

@@ -7,6 +7,8 @@ const app = express();
 const port = process.env.PORT;
 
 // MIDDLEWARE
+app.use(express.json());
+
 // this will apply to all routes written below this
 // for route-specific, add it to the route --> app.method(path, middleware, handler);
 app.use((req, res, next) => {
