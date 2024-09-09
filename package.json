@@ -4,6 +4,7 @@
   "description": "My travel blog application using Express",
   "main": "server.js",
   "scripts": {
+    "dev": "node --env-file=.env --watch server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Miguel Fortuna",
