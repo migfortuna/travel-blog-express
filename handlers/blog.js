@@ -1,4 +1,4 @@
-import { blogs, users } from "./data.js";
+import { blogs, users } from "../data.js";
 
 // NORMALLY, you would connect to a DB and pull the data from there. But for now we have static data.
 
@@ -40,11 +40,12 @@ export const getBlog = (req, res) => {
 
 export const createBlog = (req, res) => {
   const newBlog = {
-    id: 5,
+    id: blogs.length + 1,
     slug: req.body.title.toLowerCase().split(" ").join("-"),
     ...req.body,
   };
   blogs.push(newBlog);
+  res.status(201);
   res.send({ data: { ...newBlog, author: findUser(newBlog.author) } });
 };
 

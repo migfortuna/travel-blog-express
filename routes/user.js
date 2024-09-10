@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { findUser } from "../middleware.js";
-import { getUser, getBlogsByUser } from "../handlers/user.js";
+import { findUser, validateNewUser } from "../middleware.js";
+import { getUser, getBlogsByUser, addUser } from "../handlers/user.js";
 
 const router = Router();
 
@@ -11,5 +11,6 @@ router.param("userId", findUser);
 
 router.get("/:userId", getUser);
 router.get("/:userId/blogs", getBlogsByUser);
+router.post("/", validateNewUser, addUser);
 
 export default router;
