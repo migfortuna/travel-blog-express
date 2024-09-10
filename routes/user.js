@@ -1,6 +1,12 @@
 import { Router } from "express";
-import { findUser, validateNewUser } from "../middleware.js";
-import { getUser, getBlogsByUser, addUser } from "../handlers/user.js";
+import { findUser, validateUserRequest } from "../middleware.js";
+import {
+  getUsers,
+  getUser,
+  getBlogsByUser,
+  addUser,
+  updateUser,
+} from "../handlers/user.js";
 
 const router = Router();
 
@@ -9,8 +15,10 @@ const router = Router();
 // awesome!!! using res.send() here will stop the whole process, will not reach the route handlers
 router.param("userId", findUser);
 
+router.get("/", getUsers);
 router.get("/:userId", getUser);
 router.get("/:userId/blogs", getBlogsByUser);
-router.post("/", validateNewUser, addUser);
+router.post("/", validateUserRequest, addUser);
+router.put("/:userId", validateUserRequest, updateUser);
 
 export default router;

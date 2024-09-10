@@ -6,7 +6,8 @@ export const logger = (req, res, next) => {
 };
 
 export const findUser = (req, res, next) => {
-  const userId = !req.body ? req.params.userId : req.body.author;
+  const userId =
+    req.method == "POST" ? req.body.author : parseInt(req.params.userId);
   const user = users.find((user) => user.id == userId);
   if (!user) {
     res.statusCode = 404;
@@ -17,8 +18,13 @@ export const findUser = (req, res, next) => {
   }
 };
 
-export const validateBlogPut = (req, res, next) => {
-  if (!req.body.title || !req.body.description) {
+export const validateBlogRequest = (req, res, next) => {
+  if (
+    !req.body.title ||
+    !req.body.description ||
+    !req.body.author ||
+    isNaN(req.body.author)
+  ) {
     res.statusCode = 400;
     res.send({ data: "Invalid request!" });
   } else {
@@ -26,19 +32,7 @@ export const validateBlogPut = (req, res, next) => {
   }
 };
 
-export const validateBlogPost = (req, res, next) => {
-  if (!req.body.title || !req.body.description) {
-    res.statusCode = 400;
-    res.send({ data: "Invalid request!" });
-  } else if (!req.body.author || isNaN(req.body.author)) {
-    res.statusCode = 400;
-    res.send({ data: "Invalid request!" });
-  } else {
-    next();
-  }
-};
-
-export const validateNewUser = (req, res, next) => {
+export const validateUserRequest = (req, res, next) => {
   if (!req.body.firstName || !req.body.lastName) {
     res.status(400);
     res.send({ data: "Invalid request!" });

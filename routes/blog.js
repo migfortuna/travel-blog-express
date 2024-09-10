@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { validateBlogPut, validateBlogPost, findUser } from "../middleware.js";
+import { validateBlogRequest, findUser } from "../middleware.js";
 import {
   findBlog,
   getAllBlogs,
@@ -14,8 +14,8 @@ router.param("slug", findBlog);
 
 router.get("/", getAllBlogs);
 router.get("/:slug", getBlog);
-router.post("/", [validateBlogPost, findUser], createBlog);
-router.put("/:slug", validateBlogPut, updateBlog);
+router.post("/", [validateBlogRequest, findUser], createBlog);
+router.put("/:slug", validateBlogRequest, updateBlog);
 router.delete("/:slug", deleteBlog);
 
 export default router;
