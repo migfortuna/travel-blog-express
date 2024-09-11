@@ -35,3 +35,10 @@ export const updateUser = (req, res) => {
   req.currentUser = { ...user };
   res.send({ data: { ...user } });
 };
+
+export const deleteUser = (req, res) => {
+  const userIndex = users.findIndex((user) => user.id == req.currentUser.id);
+  res.send({
+    data: users.splice(userIndex, 1)[0],
+  });
+};
