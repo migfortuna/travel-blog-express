@@ -1,0 +1,8 @@
+.blog-text {
+     color: blue;
+     text-decoration: underline;
+}
+
+.blog-text:hover {
+     cursor: pointer;
+}

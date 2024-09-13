@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { validateBlogRequest, findUser } from "../middleware.js";
+import { findBlog, validateBlogRequest, findUser } from "../middleware.js";
 import {
-  findBlog,
   getAllBlogs,
   getBlog,
   createBlog,
