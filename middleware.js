@@ -18,7 +18,7 @@ export const errorHandler = (err, req, res, next) => {
     404: "Resource Not Found",
     500: err.message ?? "Internal Server Error",
   };
-  res.status(status).send({ data: errorMapper[status] });
+  res.status(status).send({ error: errorMapper[status] });
 };
 
 // CUSTOM ERROR HANDLING FOR ASYNCHRONOUS FUNCTIONS
